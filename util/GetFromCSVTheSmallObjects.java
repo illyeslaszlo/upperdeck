@@ -32,8 +32,7 @@ public class GetFromCSVTheSmallObjects {
                         Integer.parseInt(smc[2]),
                         Boolean.parseBoolean(smc[3]),
                         Integer.parseInt(smc[4])));
-                System.out.println(smc[1]+" "+smc[2]+" "+smc[3]+smc[4]);
-
+//                System.out.println(smc[1]+" "+smc[2]+" "+smc[3]+smc[4]);
             }
 
         } catch (IOException e) {

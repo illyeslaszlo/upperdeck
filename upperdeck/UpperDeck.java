@@ -21,13 +21,14 @@ public class UpperDeck {
     int XOverPercent = 100;
     int mutationPercent = 1;
     
+    int largeObjectLength = 100;
+    int largeObjectWidth = 800;
+    
     public static void main(String[] args) {
         // TODO code application logic here
-        GetFromCSVTheSmallObjects.getTheObjects("D:/proba.csv");
+//        GetFromCSVTheSmallObjects.getTheObjects("C:/proba.csv");
     }
     
-    private void getCSV(){
-    }
     
     private void genLargObjects(){
     
