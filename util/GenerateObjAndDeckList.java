@@ -14,6 +14,8 @@ import java.util.Random;
  * @author user
  */
 public class GenerateObjAndDeckList {
+     static Random rand = new Random();
+
     
     public static ArrayList<SmallObjectToPlace> smallObjectsToShuffle(ArrayList<SmallObjWithCardinality> sObjWithNumbers){
         ArrayList<SmallObjectToPlace> sObjList = new ArrayList();
@@ -33,13 +35,32 @@ public class GenerateObjAndDeckList {
     }
             
     public static ArrayList<SmallObjectToPlace> shuffleeSmallObjectList(ArrayList<SmallObjectToPlace> sObjList ){
+        shuffleAllSmallRotation(sObjList);
         Collections.shuffle(sObjList);
         return sObjList;
     }
     
+    //Generate a ranndom rotation for an object that can rotate
+    
+    private static void shuffleRotationOneObj(SmallObjectToPlace smop){
+        if(rand.nextBoolean()){
+            int temp = smop.getLength();
+            smop.setLength(smop.getWidth());
+            smop.setWidth(temp);
+        }
+    }
+ 
+    // Az osszes kis teglalapot megforgatja, ha a veletlen ugy akarja
+    private static void shuffleAllSmallRotation(ArrayList<SmallObjectToPlace> sasr){
+        for (SmallObjectToPlace curInstance: sasr) {
+            if(curInstance.getRotate()){
+                shuffleRotationOneObj(curInstance);
+            }
+        }
+    }
+    
     public static ArrayList<Integer> generateDeckList(int numberOfSmallObjects){
         // Generate the DeckList
-        Random rand = new Random();
         ArrayList <Integer> numberOfDeck = new ArrayList();
         
         for(int i=0;i<numberOfSmallObjects;i++){

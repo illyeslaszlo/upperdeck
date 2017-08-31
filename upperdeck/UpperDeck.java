@@ -17,23 +17,37 @@ public class UpperDeck {
      * @param args the command line arguments
      */
     
-    int populationSize=1000;
-    int XOverPercent = 100;
-    int mutationPercent = 1;
+    static int populationSize=1000;
+    static int XOverPercent = 100;
+    static int mutationPercent = 1;
     
-    int largeObjectLength = 100;
-    int largeObjectWidth = 800;
+    static int largeObjectLength = 100;
+    static int largeObjectWidth = 800;
     
     public static void main(String[] args) {
         // TODO code application logic here
-//        GetFromCSVTheSmallObjects.getTheObjects("C:/proba.csv");
+        
+        // Importing the Small Objects With Cardinality to main
+        ArrayList <SmallObjWithCardinality> smallObjCardList = 
+        GetFromCSVTheSmallObjects.getTheObjects("C:/proba.csv");
+        
+        // Get the whole list with 1 cardinality
+        ArrayList<SmallObjectToPlace> smallObjList =
+        GenerateObjAndDeckList.smallObjectsToShuffle(smallObjCardList);
+        
+        smallObjCardList=null;
+        
+        //Generate the first population
+        ArrayList <OneLargeObjectToFill> population = new ArrayList();
+        for (int i=0;i<populationSize;i++){
+            OneLargeObjectToFill olotf = 
+                    new OneLargeObjectToFill(largeObjectLength,largeObjectWidth);
+            
+        }
+        
     }
     
-    
-    private void genLargObjects(){
-    
-    }
-    
+     
     private ArrayList<OneLargeObjectToFill> Xover( OneLargeObjectToFill firstParent, OneLargeObjectToFill secondParent){
         ArrayList<OneLargeObjectToFill> twoOffSprings = new ArrayList();
         // TODO the crossover here
