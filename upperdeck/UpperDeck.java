@@ -35,14 +35,17 @@ public class UpperDeck {
         ArrayList<SmallObjectToPlace> smallObjList =
         GenerateObjAndDeckList.smallObjectsToShuffle(smallObjCardList);
         
-        smallObjCardList=null;
         
         //Generate the first population
         ArrayList <OneLargeObjectToFill> population = new ArrayList();
         for (int i=0;i<populationSize;i++){
             OneLargeObjectToFill olotf = 
                     new OneLargeObjectToFill(largeObjectLength,largeObjectWidth);
-            
+            olotf.setSmallObjList(GenerateObjAndDeckList.shuffleSmallObjectList(smallObjList));
+            olotf.setDeckListNumber(GenerateObjAndDeckList.generateDeckList(smallObjList.size()));
+            // Placing the small objects
+            olotf.placeTheSmallObjects();
+            population.add(olotf);
         }
         
     }

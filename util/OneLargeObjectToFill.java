@@ -16,23 +16,39 @@ public class OneLargeObjectToFill extends Rectangle {
     private int coveredArea=0;
 
     private final boolean filledAreas[][];
+    
+    // The list of the decks where to place the small objects
 
-    private final ArrayList<Deck> deckList = new ArrayList();
+    private final ArrayList<Integer> deckListNumber = new ArrayList();
+    
+    
+    //The 
     
     private final ArrayList<NumberedDeck> numbDeckList = new ArrayList();
 
+    // The index of the array is the Order of the small objects when placing
+    
     private final ArrayList<SmallObjectToPlace> placesSmallObjects = new ArrayList();
 
     public OneLargeObjectToFill(int aLength, int aWidth) {
         super(aLength, aWidth);
         filledAreas = new boolean[aLength][aWidth];
-        deckList.add(new Deck(0, aWidth, true));
-        deckList.add(new Deck(aLength, aWidth, true));
+        numbDeckList.add(new NumberedDeck(0, aWidth, true,1));
+        numbDeckList.add(new NumberedDeck(aLength, aWidth, false,2));
         for (int i = 0; i < aLength; i++) {
             for (int j = 0; j < aWidth; j++) {
                 filledAreas[i][j] = false;
             }
         }
+    }
+    
+    public void setSmallObjList(ArrayList<SmallObjectToPlace> aPlacesSmallObjects){
+        placesSmallObjects.addAll(aPlacesSmallObjects);
+    }
+    
+    
+    public void setDeckListNumber(ArrayList<Integer> aDeckListNumber){
+        deckListNumber.addAll(aDeckListNumber);
     }
 
     public boolean possibleToPlace(Deck aDeck, SmallObjectToPlace aSmallObject) {
@@ -124,8 +140,26 @@ public class OneLargeObjectToFill extends Rectangle {
         return coveredArea;
     }
     
-    private void renArrangeDecks(Deck aDeck){
+    private void renArrangeDecks(){
+        //TODO renumbering (rearranging) the deck List
         
+    }
+    
+    public int placeTheSmallObjects(){
+        int k=0;
+        for(int i=0;i<placesSmallObjects.size();i++){
+            if(possibleToPlace(numbDeckList.get(i),placesSmallObjects.get(i))){
+                coverTheArea(numbDeckList.get(i),placesSmallObjects.get(i));
+                //TODO
+                // Get out the filled decks)
+                // Insert the new, created decks)
+                renArrangeDecks();
+                k=i;
+            }else{
+                break;
+            }
+        }
+        return k;
     }
     
 }

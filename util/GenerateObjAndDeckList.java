@@ -34,7 +34,7 @@ public class GenerateObjAndDeckList {
         return sObjList;
     }
             
-    public static ArrayList<SmallObjectToPlace> shuffleeSmallObjectList(ArrayList<SmallObjectToPlace> sObjList ){
+    public static ArrayList<SmallObjectToPlace> shuffleSmallObjectList(ArrayList<SmallObjectToPlace> sObjList ){
         shuffleAllSmallRotation(sObjList);
         Collections.shuffle(sObjList);
         return sObjList;
